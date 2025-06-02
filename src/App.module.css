@@ -1,0 +1,15 @@
+.App {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--black);
+  color: var(--tridery-color);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.Title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--mint);
+}

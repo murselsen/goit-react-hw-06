@@ -1,39 +1,16 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import reduxLogo from "./assets/redux.png";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import Css from "./App.module.css";
+// Components
+import Form from "./components/Form";
 
-function App() {
-  const [count, setCount] = useState(0);
-
+const App = () => {
+  console.log("App component rendered");
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-        <a href="https://redux.js.org/" target="_blank">
-          <img src={reduxLogo} className="logo" alt="Redux logo" />
-        </a>
-      </div>
-      <h1>Vite + React + Redux</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite, React And Redux logos to learn more
-      </p>
-    </>
+    <div className={Css.App}>
+      <h1 className={Css.Title}>Contacts</h1>
+      <Form />
+    </div>
   );
-}
+};
 
 export default App;
+// theme : https://colorhunt.co/palette/0000002222221dcd9f169976

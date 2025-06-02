@@ -1,0 +1,25 @@
+.Form {
+  padding: 30px 10px;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: var(--space);
+}
+.FormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+}
+
+.FormGroup .Input {
+  padding: 10px 15px;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid var(--green);
+  color: var(--green);
+}
