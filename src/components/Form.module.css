@@ -23,3 +23,13 @@
   border-bottom: 1px solid var(--green);
   color: var(--green);
 }
+.FormGroup .Button {
+  padding: 5px 20px;
+  width: 80px;
+  height: 30px;
+  border-radius: 4px;
+  background-color: var(--green);
+  color: whitesmoke;
+  outline: none;
+  border: 0;
+}
