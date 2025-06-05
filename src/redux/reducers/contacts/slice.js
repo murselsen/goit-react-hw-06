@@ -6,8 +6,8 @@ const initialValues = {
   items: [],
 };
 
-const contactSlice = createSlice({
-  name: "contact",
+const contactsSlice = createSlice({
+  name: "contacts",
   initialState: initialValues,
   reducers: {
     addContact: (state, action) => {
@@ -19,23 +19,19 @@ const contactSlice = createSlice({
       );
     },
   },
-  selectors: {
-    selectContacts: (state) => state.items,
-  },
 });
 
 const contactsPersistConfig = {
   key: "contacts", // Local storage'da kullanılacak anahtar
   storage, // Depolama yöntemi (localStorage)
-  whitelist: ["items"], // Sadece items dizisini persist et
+  // whitelist: ["items"], // Sadece items dizisini persist et
 };
 
 // Persist edilmiş reducer oluştur
 const persistedContactsReducer = persistReducer(
   contactsPersistConfig,
-  contactSlice.reducer
+  contactsSlice.reducer
 );
 
-export const { selectContacts } = contactSlice.selectors;
-export const { addContact, deleteContact } = contactSlice.actions;
+export const { addContact, deleteContact } = contactsSlice.actions;
 export default persistedContactsReducer;

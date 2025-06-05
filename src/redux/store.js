@@ -1,19 +1,18 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistStore } from "redux-persist";
-import contactsReducer from "./reducers/contact/slice";
-import filtersReducer from "./reducers/filters/slice";
+// import contactsReducer from "./reducers/contact/slice";
+// import filtersReducer from "./reducers/filters/slice";
+import appReducers from "./reducers";
 
 // Redux Persist yapılandırması
 
-let store = configureStore({
-  reducer: {
-    contacts: contactsReducer,
-    filters: filtersReducer,
-  },
+const rootReducer = combineReducers({
+  contacts: appReducers.contacts,
+  filters: appReducers.filters,
 });
-console.log("store", store.getState());
 
-let persistor = persistStore(store);
-console.log("persistor", persistor);
+export const store = configureStore({
+  reducer: rootReducer,
+});
 
-export { store, persistor };
+export const persistor = persistStore(store);

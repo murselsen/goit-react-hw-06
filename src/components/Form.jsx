@@ -3,7 +3,6 @@ import { nanoid } from "nanoid";
 
 import Css from "./Form.module.css";
 
-import { addContact } from "../redux/reducers/contact/slice"; // Importing the contact slice for potential future use
 import { useDispatch } from "react-redux";
 
 const AForm = () => {
@@ -14,10 +13,8 @@ const AForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, { resetForm }) => {
-    console.log("Form submitted with values:", values);
-    // Here you would typically dispatch an action to add the contact
-    dispatch(addContact(values));
-    resetForm(); // Reset the form after submission
+    dispatch({ type: "contacts/addContact", payload: values });
+    resetForm();
   };
 
   return (

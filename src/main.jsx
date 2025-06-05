@@ -8,7 +8,7 @@ import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate loading={<p>Data loading...</p>} persistor={persistor}>
       <App />
     </PersistGate>
   </Provider>

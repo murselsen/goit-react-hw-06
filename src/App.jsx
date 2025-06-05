@@ -6,7 +6,7 @@ const App = () => {
   console.log("App component rendered");
   return (
     <div className={Css.App}>
-      <h1 className={Css.Title}>Contacts</h1>
+      <h1 className={Css.Title}>Phone Contacts</h1>
       <Form />
       <ContactList />
     </div>

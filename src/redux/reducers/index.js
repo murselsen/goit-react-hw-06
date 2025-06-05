@@ -1,8 +1,8 @@
-import contactReducer from "./contact/slice";
+import contactReducer from "./contacts/slice";
 import filtersReducer from "./filters/slice";
 
 const rootReducer = {
-  contact: contactReducer,
+  contacts: contactReducer,
   filters: filtersReducer,
 };
 
