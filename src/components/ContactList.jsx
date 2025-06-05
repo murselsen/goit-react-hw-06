@@ -12,15 +12,20 @@ const ContactList = () => {
       })
     );
   };
+  let formattedContactPhone;
   return (
     <div className={Css.ContactArea}>
       <h2 className={Css.ContactAreaTitle}>Contacts</h2>
       <ul className={Css.ContactList}>
         {contacts.map((contact) => (
           <li key={contact.id} className={Css.ContactItem}>
-            <span className={Css.ItemBadge}>{contact.name[0]}</span>{" "}
-            <p className={Css.Title}>{contact.name}</p>{" "}
-            <p className={Css.subTitle}>{contact.phone}</p>{" "}
+            <span className={Css.ItemBadge}>{contact.name[0]}</span>
+            <p className={Css.Title}>{contact.name}</p>
+
+            <p className={Css.subTitle}>{`${contact.phone.slice(
+              0,
+              3
+            )}-${contact.phone.slice(3, 5)}-${contact.phone.slice(5)}`}</p>
             <button
               onClick={() => handleDeleteUser(contact.id)}
               className={Css.Btn}
