@@ -21,8 +21,10 @@ const AForm = () => {
     name: Yup.string()
       .required("Name is required")
       .min(2, "Name must be at least 2 characters long"),
-    phone: Yup.number()
+    phone: Yup.string()
       .required("Phone number is required")
+      .min(6)
+      .max(7)
       .typeError("Phone number must be a number"),
   });
 
@@ -51,11 +53,12 @@ const AForm = () => {
             Phone
           </label>
           <Field
-            type="numberas"
+            type="number"
             className={Css.Input}
             id={telId}
             name="phone"
             placeholder="Enter phone number"
+            maxLength="7"
           />
           <ErrorMessage name="phone" component="span" className={Css.Error} />
         </div>
