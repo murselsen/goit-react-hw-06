@@ -12,7 +12,6 @@ const ContactList = () => {
       })
     );
   };
-  let formattedContactPhone;
   return (
     <div className={Css.ContactArea}>
       <h2 className={Css.ContactAreaTitle}>Contacts</h2>
