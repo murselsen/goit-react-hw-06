@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Css from "./ContactList.module.css";
 import { deleteContact } from "../redux/reducers/contacts/slice";
@@ -6,7 +6,7 @@ import { changeFilter } from "../redux/reducers/filters/slice";
 import { Field, Form, Formik } from "formik";
 
 const ContactList = () => {
-
+  const filteredSearchName = useSelector((state) => state.filters.search);
   const rContacts = useSelector((state) => state.contacts.items);
   const [contacts, setContacts] = useState(rContacts);
   const dispatch = useDispatch();
@@ -18,7 +18,12 @@ const ContactList = () => {
     );
   };
 
-  
+  useEffect(() => {
+    const filteredContacts = rContacts.filter((contact) =>
+      contact.name.toLowerCase().includes(filteredSearchName.toLowerCase())
+    );
+    setContacts(filteredContacts);
+  }, [dispatch]);
 
   return (
     <div className={Css.ContactArea}>
