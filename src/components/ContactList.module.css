@@ -31,8 +31,8 @@
   background-color: var(--black);
   transition: background-color 1s ease, color 3s;
   align-items: center;
-  width: 100%;
-  max-width: 450px;
+  flex: 1;
+  min-width: 350px;
 }
 .ContactItem .ItemBadge {
   width: 30px;
@@ -55,6 +55,7 @@
   color: white;
   font-weight: bold;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 .ContactItem .Btn:hover {
   color: var(--black);
@@ -64,8 +65,8 @@
 @media (max-width: 767px) {
   .ContactArea {
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+
+    max-width: 650px;
   }
   .ContactItem {
     flex-direction: row;
@@ -73,12 +74,19 @@
     gap: 30px;
     row-gap: 10px;
     align-items: center;
+    font-size: 1.4em;
   }
   .ContactItem .ItemBadge {
     margin-bottom: 10px;
+    font-size: 1em;
+    width: 35px;
+    height: 35px;
+    align-self: flex-end;
   }
   .ContactItem .Btn {
     width: 100%;
+    font-size: 0.75em;
+
     text-align: center;
   }
 }
