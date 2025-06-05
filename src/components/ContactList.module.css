@@ -61,6 +61,26 @@
   color: var(--black);
   font-weight: normal;
 }
+.ContactForm {
+  margin-top: 10px;
+}
+.ContactFormGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  color: white;
+  flex: 1;
+  min-width: 250px;
+}
+
+.ContactFormGroup .Input {
+  padding: 10px 15px;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid var(--black);
+  color: white;
+}
 
 @media (max-width: 767px) {
   .ContactArea {

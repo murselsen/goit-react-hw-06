@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Css from "./ContactList.module.css";
 import { deleteContact } from "../redux/reducers/contacts/slice";
+import { changeFilter } from "../redux/reducers/filters/slice";
+import { Field, Form, Formik } from "formik";
 
 const ContactList = () => {
-  const contacts = useSelector((state) => state.contacts.items);
+
+  const rContacts = useSelector((state) => state.contacts.items);
+  const [contacts, setContacts] = useState(rContacts);
   const dispatch = useDispatch();
   const handleDeleteUser = (id) => {
     dispatch(
@@ -12,9 +17,27 @@ const ContactList = () => {
       })
     );
   };
+
+  
+
   return (
     <div className={Css.ContactArea}>
       <h2 className={Css.ContactAreaTitle}>Contacts</h2>
+      <Formik initialValues={{ search: "" }}>
+        <Form className={Css.ContactForm}>
+          <div className={Css.ContactFormGroup}>
+            <label className={Css.Label}> Search</label>
+            <Field
+              className={Css.Input}
+              name="search"
+              onChange={(e) => {
+                dispatch(changeFilter(e.target.value));
+              }}
+              placeholder="Enter the name you want to search for..."
+            />
+          </div>
+        </Form>
+      </Formik>
       <ul className={Css.ContactList}>
         {contacts.map((contact) => (
           <li key={contact.id} className={Css.ContactItem}>
