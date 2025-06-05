@@ -3,7 +3,6 @@ import Css from "./App.module.css";
 import Form from "./components/Form";
 import ContactList from "./components/ContactList";
 const App = () => {
-  console.log("App component rendered");
   return (
     <div className={Css.App}>
       <h1 className={Css.Title}>Phone Contacts</h1>

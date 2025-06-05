@@ -1,12 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { nanoid } from "nanoid";
-
+import * as Yup from "yup";
+// Styles
 import Css from "./Form.module.css";
 
 import { useDispatch } from "react-redux";
 
 const AForm = () => {
-  console.log("Form component rendered");
   const nameId = nanoid();
   const telId = nanoid();
 
@@ -17,8 +17,21 @@ const AForm = () => {
     resetForm();
   };
 
+  const validationSchema = Yup.object().shape({
+    name: Yup.string()
+      .required("Name is required")
+      .min(2, "Name must be at least 2 characters long"),
+    phone: Yup.number()
+      .required("Phone number is required")
+      .typeError("Phone number must be a number"),
+  });
+
   return (
-    <Formik initialValues={{ name: "", phone: "" }} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={{ name: "", phone: "" }}
+      onSubmit={handleSubmit}
+      validationSchema={validationSchema}
+    >
       <Form className={Css.Form}>
         <div className={Css.FormGroup}>
           <label className={Css.Label} htmlFor={nameId}>
