@@ -6,7 +6,6 @@ import { changeFilter } from "../redux/reducers/filters/slice";
 import { Field, Form, Formik } from "formik";
 
 const ContactList = () => {
-  const filteredSearchName = useSelector((state) => state.filters.search);
   const rContacts = useSelector((state) => state.contacts.items);
   const [contacts, setContacts] = useState(rContacts);
   const dispatch = useDispatch();
@@ -18,12 +17,13 @@ const ContactList = () => {
     );
   };
 
-  useEffect(() => {
+  const changeSearchName = (e) => {
+    dispatch(changeFilter(e.target.value));
     const filteredContacts = rContacts.filter((contact) =>
-      contact.name.toLowerCase().includes(filteredSearchName.toLowerCase())
+      contact.name.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setContacts(filteredContacts);
-  }, [dispatch]);
+  };
 
   return (
     <div className={Css.ContactArea}>
@@ -35,9 +35,7 @@ const ContactList = () => {
             <Field
               className={Css.Input}
               name="search"
-              onChange={(e) => {
-                dispatch(changeFilter(e.target.value));
-              }}
+              onChange={changeSearchName}
               placeholder="Enter the name you want to search for..."
             />
           </div>
