@@ -21,8 +21,6 @@ const ContactList = () => {
     dispatch(changeFilter(event.target.value));
   };
 
-  useEffect(() => {}, [dispatch]);
-
   const searchId = nanoid();
   return (
     <div className={Css.ContactArea}>
