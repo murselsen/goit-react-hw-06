@@ -1,35 +1,33 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Css from "./ContactList.module.css";
-import { deleteContact } from "../redux/reducers/contacts/slice";
+import {
+  deleteContact,
+  selectContacts,
+} from "../redux/reducers/contacts/slice";
 import { changeFilter } from "../redux/reducers/filters/slice";
 import { Field, Form, Formik } from "formik";
 import { nanoid } from "nanoid";
 
 const ContactList = () => {
-  const rContacts = useSelector((state) => state.contacts.items);
-  const [contacts, setContacts] = useState(rContacts);
+  let contacts = useSelector(selectContacts);
+
   const dispatch = useDispatch();
   const handleDeleteUser = (id) => {
-    dispatch(
-      deleteContact({
-        id: id,
-      })
-    );
+    dispatch(deleteContact({ id: id }));
   };
 
-  const changeSearchName = (e) => {
-    dispatch(changeFilter(e.target.value));
-    const filteredContacts = rContacts.filter((contact) =>
-      contact.name.toLowerCase().includes(e.target.value.toLowerCase())
-    );
-    setContacts(filteredContacts);
+  const changeFrom = (event) => {
+    dispatch(changeFilter(event.target.value));
   };
+
+  useEffect(() => {}, [dispatch]);
+
   const searchId = nanoid();
   return (
     <div className={Css.ContactArea}>
       <h2 className={Css.ContactAreaTitle}>Contacts</h2>
-      <Formik>
+      <Formik onChange={changeFrom}>
         <Form className={Css.ContactForm}>
           <div className={Css.ContactFormGroup}>
             <label className={Css.Label} htmlFor={searchId}>
@@ -39,7 +37,7 @@ const ContactList = () => {
               className={Css.Input}
               name="search"
               id={searchId}
-              onChange={changeSearchName}
+              onChange={changeFrom}
               placeholder="Enter the name you want to search for..."
             />
           </div>

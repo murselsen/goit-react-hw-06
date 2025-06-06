@@ -29,7 +29,7 @@ const contactsSlice = createSlice({
 const contactsPersistConfig = {
   key: "contacts", // Local storage'da kullanılacak anahtar
   storage, // Depolama yöntemi (localStorage)
-  // whitelist: ["items"], // Sadece items dizisini persist et
+  whitelist: ["items"], // Sadece items dizisini persist et
 };
 
 // Persist edilmiş reducer oluştur
@@ -38,5 +38,13 @@ const persistedContactsReducer = persistReducer(
   contactsSlice.reducer
 );
 
+export const selectContacts = (state) => {
+  if (state.filters.search) {
+    return state.contacts.items.filter((contact) =>
+      contact.name.toLowerCase().includes(state.filters.search.toLowerCase())
+    );
+  }
+  return state.contacts.items;
+};
 export const { addContact, deleteContact } = contactsSlice.actions;
 export default persistedContactsReducer;
