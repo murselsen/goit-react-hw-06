@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Css from "./ContactList.module.css";
 import { deleteContact } from "../redux/reducers/contacts/slice";
 import { changeFilter } from "../redux/reducers/filters/slice";
 import { Field, Form, Formik } from "formik";
+import { nanoid } from "nanoid";
 
 const ContactList = () => {
   const rContacts = useSelector((state) => state.contacts.items);
@@ -24,17 +25,20 @@ const ContactList = () => {
     );
     setContacts(filteredContacts);
   };
-
+  const searchId = nanoid();
   return (
     <div className={Css.ContactArea}>
       <h2 className={Css.ContactAreaTitle}>Contacts</h2>
-      <Formik initialValues={{ search: "" }}>
+      <Formik>
         <Form className={Css.ContactForm}>
           <div className={Css.ContactFormGroup}>
-            <label className={Css.Label}> Search</label>
+            <label className={Css.Label} htmlFor={searchId}>
+              Search
+            </label>
             <Field
               className={Css.Input}
               name="search"
+              id={searchId}
               onChange={changeSearchName}
               placeholder="Enter the name you want to search for..."
             />
